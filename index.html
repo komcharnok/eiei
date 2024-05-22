@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- <link rel="stylesheet" href="main.js"> -->
+</head>
+
+<body>
+    <style>
+        .error {
+            color: red;
+        }
+
+        .valid {
+            color: green;
+        }
+    </style>
+    <div>
+        <label for="phoneNumber">Phone Number:</label>
+        <input type="text" id="phoneNumber" name="phoneNumber">
+        <button id="checkButton">Check</button>
+    </div>
+    <p id="message"></p>
+
+    <script>
+        const checkButton = document.getElementById('checkButton');
+        const phoneNumberInput = document.getElementById('phoneNumber');
+        const message = document.getElementById('message');
+
+        checkButton.addEventListener('click', () => {
+            const phoneNumber = phoneNumberInput.value.trim();
+
+            if (!phoneNumber) {
+                message.textContent = 'Phone Number is required';
+                message.className = 'error';
+            } else if (!/^\d+$/.test(phoneNumber)) {
+                message.textContent = 'Phone Number is invalid';
+                message.className = 'error';
+            } else if (phoneNumber.length !== 10) {
+                message.textContent = 'Invalid length';
+                message.className = 'error';
+            } else {
+                message.textContent = 'Your number is valid';
+                message.className = 'valid';
+            }
+        });
+    </script>
+</body>
+
+</html>
